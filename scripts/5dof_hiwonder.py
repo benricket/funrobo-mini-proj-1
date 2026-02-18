@@ -65,7 +65,14 @@ class HiwonderRobot(FiveDOFRobotTemplate):
         # Calculate joint velocities using the inverse Jacobian
         # For this, we don't care about rotation, so we want only a 3 element velocity vector
         J = self.calc_jacobians(new_joint_values)
-        joint_vel = self.inv_jacobian(J[0:3,:]) @ vel # Invert only the linear velocity part
+        Jv = J[0:3,:] # Only includes linear velocity, shape (3,5)
+
+        # Shift away from singularities using damped inverse
+        lam = 0.05
+        JJt = Jv @ Jv.T # shape (3,3)
+        JJt = JJt + (lam**2 * np.eye(3))
+        J_inv_damped = Jv.T @ self.inv_jacobian(JJt)
+        joint_vel = J_inv_damped @ vel
         
         joint_vel = np.clip(joint_vel, 
                             [limit[0] for limit in self.joint_vel_limits], 
