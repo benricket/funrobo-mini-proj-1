@@ -34,12 +34,22 @@ class KinovaRobot(KinovaRobotTemplate):
         dh_table = np.array([
             [0,self.l1,0,pi],
             [self.joint_values[0],-self.l2, 0, 0.5*pi],
-            [self.joint_values[1] + 0.5*pi, 0, self.l3,pi],
+            [self.joint_values[1] + 0.5*pi, 0, -self.l3,pi],
             [self.joint_values[2] + 0.5*pi, 0, 0, 0.5*pi],
             [self.joint_values[3], -self.l4 - self.l5, 0, -0.5*pi],
             [self.joint_values[4], 0, 0, 0.5*pi],
-            [self.joint_values[5] - 0.5*pi, -self.l6 - self.l7, 0, pi]
+            [self.joint_values[5], -self.l6 - self.l7, 0, pi]
         ])
+
+        # dh_table = np.array([
+        #     [0,0,0,pi],
+        #     [self.joint_values[0],-(self.l2 + self.l1), 0, 0.5*pi],
+        #     [self.joint_values[1] + 0.5*pi, 0, self.l3,pi],
+        #     [self.joint_values[2] + 0.5*pi, 0, 0, 0.5*pi],
+        #     [self.joint_values[3], -self.l4 - self.l5, 0, -0.5*pi],
+        #     [self.joint_values[4], 0, 0, 0.5*pi],
+        #     [self.joint_values[5], -self.l6 - self.l7, 0, pi]
+        # ])
 
         H_ee, H_list = self.dh_to_H(dh_table=dh_table)
 
