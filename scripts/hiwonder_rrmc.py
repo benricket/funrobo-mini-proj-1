@@ -12,7 +12,7 @@ from math import cos, sin, pi
 import numpy as np
 import traceback
 
-from funrobo_hiwonder.core.hiwonder import HiwonderRobot, BaseRobot
+from funrobo_hiwonder.core.hiwonder import HiwonderRobot
 from funrobo_kinematics.core.arm_models import FiveDOFRobotTemplate
 import funrobo_kinematics.core.utils as ut
 

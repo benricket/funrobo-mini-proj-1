@@ -4,7 +4,7 @@ from funrobo_kinematics.core.visualizer import Visualizer, RobotSim
 import funrobo_kinematics.core.utils as ut
 from funrobo_kinematics.core.arm_models import FiveDOFRobotTemplate
 
-class HiwonderRobot(FiveDOFRobotTemplate):
+class FiveDOFRobot(FiveDOFRobotTemplate):
     def __init__(self):
         super().__init__()
     
@@ -133,7 +133,7 @@ class HiwonderRobot(FiveDOFRobotTemplate):
 
 
 if __name__ == "__main__":
-    model = HiwonderRobot()
+    model = FiveDOFRobot()
     robot = RobotSim(robot_model=model)
     viz = Visualizer(robot=robot)
     viz.run()
